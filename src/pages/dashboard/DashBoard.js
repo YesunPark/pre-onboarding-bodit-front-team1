@@ -1,12 +1,23 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import Fetch from "./Fetch";
 
 const DashBoard = () => {
-  return (
-    <DashBoardContainer>
-      <Fetch />
-    </DashBoardContainer>
-  );
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const list = await axios.get(
+        "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9"
+      );
+      setData(list.data);
+    };
+    getData();
+  }, []);
+
+  console.log(data);
+
+  return <DashBoardContainer></DashBoardContainer>;
 };
 
 const DashBoardContainer = styled.div``;
