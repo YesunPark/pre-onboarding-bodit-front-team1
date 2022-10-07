@@ -1,16 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import GlobalStyles from './styles/GlobalStyles';
-import SensorList from './sensorlist/SensorList';
+import SensorList from './pages/sensorlist/SensorList';
+import DashBoard from './pages/dashboard/DashBoard';
+import GlobalStyles from './styles/Globalstyles';
 
-function Router() {
+const Router = () => {
 	return (
 		<BrowserRouter>
 			<GlobalStyles />
 			<Routes>
 				<Route path='/' element={<SensorList />} />
+				<Route path='/dashboard' element={<DashBoard />} />
 			</Routes>
 		</BrowserRouter>
 	);
-}
+};
 
 export default Router;
