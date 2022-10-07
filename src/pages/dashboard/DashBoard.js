@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import Graphs from "./graphs/Graphs";
 
 const DashBoard = () => {
   const [data, setData] = useState([]);
@@ -17,7 +18,11 @@ const DashBoard = () => {
 
   console.log(data);
 
-  return <DashBoardContainer></DashBoardContainer>;
+  return (
+    <DashBoardContainer>
+      <Graphs />
+    </DashBoardContainer>
+  );
 };
 
 const DashBoardContainer = styled.div``;
