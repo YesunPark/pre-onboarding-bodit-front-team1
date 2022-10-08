@@ -9,14 +9,21 @@ const SensorList = () => {
 		(a, b) => a.thingName.slice(-6) - b.thingName.slice(-6)
 	);
 	const [showedSensorList, setShowedSensorList] = useState(firstSortedList);
+
 	return (
 		<SensorListContainer>
-			<FilterHeader setShowedSensorList={setShowedSensorList} />
+			<FilterHeader
+				firstSortedList={firstSortedList}
+				setShowedSensorList={setShowedSensorList}
+			/>
 			<SensorListTable showedSensorList={showedSensorList} />
 		</SensorListContainer>
 	);
 };
 
-const SensorListContainer = styled.div``;
+const SensorListContainer = styled.div`
+	max-width: 1080px;
+	margin: auto;
+`;
 
 export default SensorList;

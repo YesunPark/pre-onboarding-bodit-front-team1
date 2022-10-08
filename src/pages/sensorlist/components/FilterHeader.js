@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { SENSOR_LIST_DATA } from '../data/sensorListData';
 
-const FilterHeader = ({ setShowedSensorList }) => {
-	const [filterItems, setFilterItems] = useState({
-		batLvl: '-',
-		cardNum: '-',
-	});
+const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
+	const [filters, setFilters] = useState({ batLvl: '-', cardNum: '-' });
 	const [filterBtnDisable, setFilterBtnDisable] = useState(true);
 
 	useEffect(() => {
-		filterItems.cardNum === '-' && filterItems.batLvl === '-'
+		filters.cardNum === '-' && filters.batLvl === '-'
 			? setFilterBtnDisable(true)
 			: setFilterBtnDisable(false);
-	}, [filterItems]);
+	}, [filters]);
 
 	const handleFilterBtn = () => {
-		const { batLvl, cardNum } = filterItems;
-		let result = SENSOR_LIST_DATA;
+		const { batLvl, cardNum } = filters;
+		let result = firstSortedList;
 		switch (batLvl) {
 			case '> 20':
 				result = result.filter((sensor) =>
@@ -45,11 +41,11 @@ const FilterHeader = ({ setShowedSensorList }) => {
 		setShowedSensorList(result);
 	};
 
-	const handleFilterItems = (e) => {
+	const handleFilters = (e) => {
 		const { id } = e.target;
 		const { value } = e.target.options[e.target.selectedIndex];
-		if (filterItems[id] !== value) {
-			setFilterItems((prev) => ({
+		if (filters[id] !== value) {
+			setFilters((prev) => ({
 				...prev,
 				[id]: value,
 			}));
@@ -58,48 +54,71 @@ const FilterHeader = ({ setShowedSensorList }) => {
 
 	return (
 		<FilterHeaderContainer>
-			<br />
-			<br />
 			<div className='filter-container'>
-				<div>
+				<div className='filter'>
 					<span>batLvl</span>
-					<select id='batLvl' onClick={handleFilterItems}>
+					<select id='batLvl' onClick={handleFilters}>
 						<option>-</option>
 						<option>{`> 20`}</option>
 						<option>{`<= 20`}</option>
 					</select>
 				</div>
 			</div>
-			<br />
-			<br />
-			<div>
+			<div className='filter'>
 				<span>cardNum</span>
-				<select id='cardNum' onClick={handleFilterItems}>
+				<select id='cardNum' onClick={handleFilters}>
 					<option>-</option>
 					<option>0</option>
 					<option>1</option>
 				</select>
 			</div>
-			<br />
-
-			<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
-				적용
-			</button>
-			<br />
-			<br />
-			<button
-				onClick={() => {
-					window.location.replace('/');
-				}}
-			>
-				초기화
-			</button>
-			<br />
-			<br />
+			<div className='button-container'>
+				<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
+					적용
+				</button>
+				<button
+					onClick={() => {
+						window.location.replace('/');
+					}}
+				>
+					초기화
+				</button>
+			</div>
 		</FilterHeaderContainer>
 	);
 };
 
-const FilterHeaderContainer = styled.div``;
+const FilterHeaderContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 30px;
+
+	.filter {
+		margin-right: 10px;
+		span {
+			margin-right: 5px;
+			line-height: 28px;
+		}
+		select {
+			width: 70px;
+			padding: 2px 3px;
+			border: 1px solid black;
+			font-size: 15px;
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+	.button-container {
+		button {
+			height: 28px;
+			margin-right: 10px;
+			padding: 0px 10px;
+			border: 1px solid black;
+			font-size: 15px;
+		}
+	}
+`;
 
 export default FilterHeader;
