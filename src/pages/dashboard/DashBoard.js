@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Graphs from "./Graphs/Graphs";
-import GraphZoom from "./Graphs/GraphZoom";
+import Graphs from "./graphs/Graphs";
 import styled from "styled-components";
 
 const DashBoard = () => {
