@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const GraphZoom = ({ graphWidth, setGraphWidth }) => {
   const zoomIn = () => {
-    setGraphWidth(graphWidth + 100);
+    graphWidth <= 1500 && setGraphWidth(graphWidth + 100);
   };
   const zoomOut = () => {
-    setGraphWidth(graphWidth - 100);
+    graphWidth >= 300 && setGraphWidth(graphWidth - 100);
   };
   return (
     <GraphZoomContainer>

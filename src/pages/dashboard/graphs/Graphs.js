@@ -1,62 +1,61 @@
-import { useState, useEffect } from "react";
-import Chart from "chart.js/auto";
-import { Line } from "react-chartjs-2";
+import { useState } from "react";
 import GraphZoom from "./GraphZoom";
+import { ResponsiveLine } from "@nivo/line";
 import styled from "styled-components";
 
 const Graphs = ({ sensorData }) => {
-  const [graphWidth, setGraphWidth] = useState(900);
-  const sensorFeeds = sensorData.feeds;
-  const datas = [
+  const [graphWidth, setGraphWidth] = useState(500);
+
+  const filteredDatas = sensorData.feeds.filter((feedsData, i) => i % 6 === 0);
+  const filteredTicks = filteredDatas.map((filteredData) =>
+    String(filteredData.created_at).slice(11, 16)
+  );
+
+  const graphsData = [
     {
-      labels: sensorFeeds.map((data) => String(data.created_at).slice(11, 16)),
-      datasets: [
-        {
-          type: "line",
-          label: "AT-C",
-          borderColor: "red",
-          borderWidth: 1,
-          pointRadius: 1,
-          data: sensorFeeds.map((data) => data.field1),
-        },
-      ],
+      title: "기온",
+      id: "Temp",
+      color: "hsl(242, 70%, 50%)",
+      data: sensorData.feeds.map((feedsData, i) => {
+        return {
+          x: String(feedsData.created_at).slice(11, 16),
+          y: Number(feedsData.field2),
+        };
+      }),
     },
     {
-      labels: sensorFeeds.map((data) => String(data.created_at).slice(11, 16)),
-      datasets: [
-        {
-          type: "line",
-          label: "AT-C",
-          borderColor: "red",
-          borderWidth: 1,
-          pointRadius: 1,
-          data: sensorFeeds.map((data) => data.field2),
-        },
-      ],
+      title: "습도",
+      id: "Humidity",
+      color: "hsl(242, 70%, 50%)",
+      data: sensorData.feeds.map((feedsData, i) => {
+        return {
+          x: String(feedsData.created_at).slice(11, 16),
+          y: Number(feedsData.field2),
+        };
+      }),
     },
     {
-      labels: sensorFeeds.map((data) => String(data.created_at).slice(11, 16)),
-      datasets: [
-        {
-          type: "line",
-          label: "AT-C",
-          borderColor: "red",
-          borderWidth: 1,
-          pointRadius: 1,
-          data: sensorFeeds.map((data) => data.field3),
-        },
-      ],
+      title: "기압",
+      id: "Pressure",
+      color: "hsl(242, 70%, 50%)",
+      data: sensorData.feeds.map((feedsData) => {
+        return {
+          x: String(feedsData.created_at).slice(11, 16),
+          y: feedsData.field3,
+        };
+      }),
     },
   ];
+
   return (
     <GraphsContainer>
       <div className="graphs-container">
         <GraphZoom graphWidth={graphWidth} setGraphWidth={setGraphWidth} />
-        {datas.map((graphData) => (
+        {graphsData.map((graphData) => (
           <GraphBox
-            graphData={graphData}
             graphWidth={graphWidth}
-            setGraphWidth={setGraphWidth}
+            graphData={[graphData]}
+            filteredTicks={filteredTicks}
           />
         ))}
       </div>
@@ -64,51 +63,68 @@ const Graphs = ({ sensorData }) => {
   );
 };
 
-const GraphBox = ({ graphData, graphWidth, setGraphWidth }) => {
-  const GRAPH_OPTIONS = {
-    // 옵션 (1)
-    responsive: true,
-    // 옵션 (2)
-    interaction: {
-      mode: "index",
-      intersect: true,
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    // 옵션 (3)
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        grid: {
-          color: "#E3E3E3",
-        },
-      },
-    },
+const GraphBox = ({ graphWidth, graphData, filteredTicks }) => {
+  const commonProperties = {
+    width: graphWidth,
+    height: 300,
   };
-
   return (
     <div className="graph-wrapper">
-      <h2 className="title">제목</h2>
+      <h2 className="title">{graphData[0].title}</h2>
       <div className="graph-container">
-        <div className="graph-cover">
-          {graphData && (
-            <Line
-              data={graphData}
-              options={GRAPH_OPTIONS}
-              // width="100%"
-              // onResize={() => {}}
-              resizeDelay="1000"
-              height="300"
-            />
-          )}
-        </div>
+        <ResponsiveLine
+          {...commonProperties}
+          data={graphData}
+          margin={{ top: 50, right: 20, bottom: 50, left: 60 }}
+          xScale={{ type: "point" }}
+          yScale={{
+            type: "linear",
+            min: "auto",
+            max: "auto",
+            stacked: true,
+            reverse: false,
+          }}
+          yFormat=" >-.2f"
+          axisTop={{
+            orient: "top",
+            tickSize: 0,
+            tickPadding: 0,
+            tickRotation: 0,
+            legend: "AT-C",
+            legendPosition: "middle",
+            legendOffset: -25,
+            tickValues: [],
+          }}
+          axisRight={null}
+          axisBottom={{
+            orient: "bottom",
+            tickSize: 0,
+            tickPadding: 4,
+            tickRotation: 70,
+            legend: "Date",
+            legendOffset: 40,
+            legendPosition: "middle",
+            tickValues: filteredTicks,
+          }}
+          axisLeft={{
+            orient: "left",
+            tickSize: 6,
+            tickPadding: 9,
+            tickRotation: -33,
+            legend: graphData[0].id,
+            legendOffset: -50,
+            legendPosition: "middle",
+          }}
+          enableGridX={false}
+          pointSize={1}
+          pointColor={{ theme: "background" }}
+          pointBorderWidth={2}
+          pointBorderColor="#ff0000"
+          pointLabelYOffset={-10}
+          useMesh={true}
+          legends={[]}
+          animate={false}
+        />
       </div>
     </div>
   );
@@ -130,14 +146,11 @@ const GraphsContainer = styled.div`
       }
       .graph-container {
         width: 30vw;
+        height: 330px;
         margin: 0 calc(10vw / 6);
         border: 1px solid black;
-        overflow: hidden;
-
-        .graph-cover {
-          width: 400px;
-          height: ;
-        }
+        overflow-x: scroll;
+        overflow-y: hidden;
       }
     }
   }
