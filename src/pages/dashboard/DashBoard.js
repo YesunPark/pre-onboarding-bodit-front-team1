@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Graphs from "./graphs/Graphs";
 import styled from "styled-components";
 
 const DashBoard = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     const getData = async () => {
@@ -17,9 +18,17 @@ const DashBoard = () => {
 
   console.log(data);
 
-  return <DashBoardContainer></DashBoardContainer>;
+  return (
+    data && (
+      <DashBoardContainer>
+        <Graphs sensorData={data} />
+      </DashBoardContainer>
+    )
+  );
 };
 
-const DashBoardContainer = styled.div``;
+const DashBoardContainer = styled.div`
+  position: relative;
+`;
 
 export default DashBoard;
