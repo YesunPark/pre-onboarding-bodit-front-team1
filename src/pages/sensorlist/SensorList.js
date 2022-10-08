@@ -1,54 +1,24 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { SENSOR_LIST_DATA } from './data/sensorListData';
+import FilterHeader from './components/FilterHeader';
 
 const SensorList = () => {
-	const [showedSensorList, setShowedSensorList] = useState(SENSOR_LIST_DATA);
-
-	//cardNum === @ 인 것만 필터링 - 완료
-	const handleFilterList = (cardNum) => {
-		const filteredList = SENSOR_LIST_DATA.filter(
-			(sensor) => sensor.shadow.connCardNum === cardNum
-		);
-		// .filter((sensor) => {
-		// 	return sensor.thingName === 'FHL-100088';
-		// });
-		setShowedSensorList(filteredList);
-	};
+	const firstSortedList = SENSOR_LIST_DATA.sort(
+		(a, b) => a.thingName.slice(-6) - b.thingName.slice(-6)
+	);
+	const [showedSensorList, setShowedSensorList] = useState(firstSortedList);
 
 	return (
 		<SensorListContainer>
-			<div
-				className='sensor-info'
-				id='cardNum'
-				onClick={(e) => {
-					handleFilterList(0);
-				}}
-			>
-				cardNum 0 인 것만 필터
-			</div>
-			<br />
-			<br />
+			<FilterHeader setShowedSensorList={setShowedSensorList} />
 			{showedSensorList.map((sensor) => {
-				return <div key={sensor.thingName}>{sensor.thingName}</div>;
+				return (
+					<div key={sensor.thingName}>
+						{sensor.shadow.connCardNum}, {sensor.shadow.batLvl}
+					</div>
+				);
 			})}
-			<br />
-			<br />
-			<div className='sensor-info' onClick={() => handleFilterList(1)}>
-				cardNum 1인 것만 필터
-			</div>
-			<br />
-			<div className='sensor-info' onClick={handleFilterList}>
-				이름이 'FHL-100088'; 필터
-			</div>
-			<br />
-			<div
-				onClick={() => {
-					setShowedSensorList(SENSOR_LIST_DATA);
-				}}
-			>
-				초기화초기화초기화초기화
-			</div>
 		</SensorListContainer>
 	);
 };
