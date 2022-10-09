@@ -8,6 +8,9 @@ const DashBoard = () => {
   const [data, setData] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const updatedStartDate = startDate.toISOString().split("T")[0];
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 1);
+  const updatedEndDate = endDate.toISOString().split("T")[0];
 
   useEffect(() => {
     const getData = async () => {
