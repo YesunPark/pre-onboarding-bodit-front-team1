@@ -54,24 +54,25 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 
 	return (
 		<FilterHeaderContainer>
-			<span className='title'>Filter : </span>
-			<div className='filter'>
-				<span>batLvl</span>
-				<select id='batLvl' onClick={handleFilters}>
-					<option>-</option>
-					<option>{`> 20`}</option>
-					<option>{`<= 20`}</option>
-				</select>
-			</div>
-			<div className='filter'>
-				<span>cardNum</span>
-				<select id='cardNum' onClick={handleFilters}>
-					<option>-</option>
-					<option>0</option>
-					<option>1</option>
-				</select>
-			</div>
-			<div className='button-container'>
+			<div className='filter-container'>
+				<span className='title'>Filter : </span>
+				<div className='filter'>
+					<span>batLvl</span>
+					<select id='batLvl' onClick={handleFilters}>
+						<option>-</option>
+						<option>{`> 20`}</option>
+						<option>{`<= 20`}</option>
+					</select>
+				</div>
+				<div className='filter'>
+					<span>cardNum</span>
+					<select id='cardNum' onClick={handleFilters}>
+						<option>-</option>
+						<option>0</option>
+						<option>1</option>
+					</select>
+				</div>
+
 				<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
 					적용
 				</button>
@@ -88,41 +89,46 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 };
 
 const FilterHeaderContainer = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 30px;
+	.filter-container {
+		display: flex;
+		justify-content: flex-end;
 
-	.title {
-		margin-right: 10px;
-		font-size: 17px;
-		font-weight: 600;
-		line-height: 28px;
-	}
-
-	.filter {
-		margin-right: 10px;
-		span {
-			margin-right: 5px;
+		.title {
+			margin-right: 10px;
+			font-size: 17px;
+			font-weight: 600;
 			line-height: 28px;
 		}
-		select {
-			width: 70px;
-			padding: 2px 3px;
-			border: 1px solid black;
-			font-size: 15px;
-			&:focus {
-				outline: none;
+
+		.filter {
+			margin-right: 10px;
+			span {
+				margin-right: 5px;
+				line-height: 28px;
+			}
+			select {
+				width: 70px;
+				padding: 2px 3px;
+				border: 1px solid black;
+				font-size: 15px;
+				&:focus {
+					outline: none;
+				}
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
-	}
 
-	.button-container {
 		button {
 			height: 28px;
 			margin-right: 10px;
 			padding: 0px 10px;
 			border: 1px solid black;
 			font-size: 15px;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 `;
