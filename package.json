@@ -9,9 +9,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.0",
-    "chart.js": "^3.9.1",
     "react": "^18.2.0",
-    "react-chartjs-2": "^4.3.1",
+    "react-beautiful-dnd": "^13.1.1",
     "react-csv": "^2.2.2",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
@@ -26,8 +25,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://yesunpark.github.io/pre-onboarding-bodit-front-team1/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
