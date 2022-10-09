@@ -3,6 +3,7 @@ import axios from "axios";
 import Graphs from "./graphs/Graphs";
 import styled from "styled-components";
 import DatePick from "./date/DatePick";
+import ExportFile from "./export/ExportFile";
 
 const DashBoard = () => {
   const [data, setData] = useState();
@@ -27,6 +28,7 @@ const DashBoard = () => {
       <DashBoardContainer>
         <DatePick setStartDate={setStartDate} startDate={startDate} />
         <Graphs sensorData={data} />
+        <ExportFile data={data} />
       </DashBoardContainer>
     )
   );
