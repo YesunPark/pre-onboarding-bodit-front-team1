@@ -4,7 +4,7 @@ import { SENSOR_LIST_DATA } from './data/sensorListData';
 import FilterHeader from './components/FilterHeader';
 import SensorListTable from './components/SensorListTable';
 
-const SensorList = () => {
+const SensorList = ({ url }) => {
 	const firstSortedList = SENSOR_LIST_DATA.sort(
 		(a, b) => a.thingName.slice(-6) - b.thingName.slice(-6)
 	);
@@ -13,6 +13,7 @@ const SensorList = () => {
 	return (
 		<SensorListContainer>
 			<FilterHeader
+				url={url}
 				firstSortedList={firstSortedList}
 				setShowedSensorList={setShowedSensorList}
 			/>

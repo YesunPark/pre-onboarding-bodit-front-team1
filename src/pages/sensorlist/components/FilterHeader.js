@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
+const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 	const [filters, setFilters] = useState({ batLvl: '-', cardNum: '-' });
 	const [filterBtnDisable, setFilterBtnDisable] = useState(true);
 
@@ -77,7 +77,7 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 				</button>
 				<button
 					onClick={() => {
-						window.location.replace('/');
+						window.location.replace(url);
 					}}
 				>
 					초기화
