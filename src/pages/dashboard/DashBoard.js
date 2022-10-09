@@ -6,8 +6,8 @@ import DatePick from "./date/DatePick";
 
 const DashBoard = () => {
   const [data, setData] = useState();
-
   const [startDate, setStartDate] = useState(new Date());
+  const updatedStartDate = startDate.toISOString().split("T")[0];
 
   useEffect(() => {
     const getData = async () => {
