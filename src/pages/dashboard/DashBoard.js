@@ -3,36 +3,32 @@ import axios from "axios";
 import Graphs from "./graphs/Graphs";
 import styled from "styled-components";
 import DatePick from "./date/DatePick";
+import ExportFile from "./export/ExportFile";
 
 const DashBoard = () => {
-  const [data, setData] = useState();
-
+  const [graphData, setGraphData] = useState();
   const [startDate, setStartDate] = useState(new Date());
-
-  useEffect(() => {
-    const newDate =
-      startDate.getFullYear() +
-      "-" +
-      (startDate.getMonth() + 1) +
-      "-" +
-      startDate.getDate();
-  }, [startDate]);
+  const updatedStartDate = startDate.toISOString().split("T")[0];
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 1);
+  const updatedEndDate = endDate.toISOString().split("T")[0];
 
   useEffect(() => {
     const getData = async () => {
       const list = await axios.get(
-        "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=2022-10-01&end=2022-10-02"
+        `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=${updatedStartDate}&end=${updatedEndDate}`
       );
-      setData(list.data);
+      setGraphData(list.data);
     };
     getData();
-  }, []);
+  }, [startDate]);
 
   return (
-    data && (
+    graphData && (
       <DashBoardContainer>
         <DatePick setStartDate={setStartDate} startDate={startDate} />
-        <Graphs sensorData={data} />
+        <Graphs sensorData={graphData} />
+        <ExportFile data={graphData} />
       </DashBoardContainer>
     )
   );
