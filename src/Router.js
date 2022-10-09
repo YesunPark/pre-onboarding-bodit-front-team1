@@ -5,13 +5,14 @@ import DashBoard from './pages/dashboard/DashBoard';
 import GlobalStyles from './styles/Globalstyles';
 
 const Router = () => {
+	const BASE_URL = '/pre-onboarding-bodit-front-team1';
 	return (
 		<BrowserRouter>
 			<GlobalStyles />
-			<PageButton />
+			<PageButton url={BASE_URL} />
 			<Routes>
-				<Route path='/' element={<SensorList />} />
-				<Route path='/dashboard' element={<DashBoard />} />
+				<Route path={`${BASE_URL}`} element={<SensorList />} />
+				<Route path={`${BASE_URL}/dashboard`} element={<DashBoard />} />
 			</Routes>
 		</BrowserRouter>
 	);

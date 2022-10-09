@@ -100,6 +100,7 @@ const GraphBoxContainer = styled.div`
       border: 1px solid black;
       overflow-x: scroll;
       overflow-y: hidden;
+      background-color: white;
     }
   }
 `;

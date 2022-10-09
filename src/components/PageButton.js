@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const PageButton = () => {
+const PageButton = ({ url }) => {
 	const navigate = useNavigate();
 	const buttonData = [
-		{ id: 1, navigate: '/', text: '센서리스트' },
-		{ id: 2, navigate: '/dashboard', text: '데이터 그래프 대시보드' },
+		{
+			id: 1,
+			navigate: url,
+			text: '센서리스트',
+		},
+		{
+			id: 2,
+			navigate: `${url}/dashboard`,
+			text: '데이터 그래프 대시보드',
+		},
 	];
 
 	return (
