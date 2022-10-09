@@ -113,7 +113,7 @@ const GraphsContainer = styled.div`
 
   .graphs-container {
     position: absolute;
-    top: 10px;
+    top: 110px;
     left: 25vw;
     display: flex;
     flex-direction: column;

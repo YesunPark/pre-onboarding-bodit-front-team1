@@ -24,7 +24,7 @@ const GraphZoom = ({ graphWidth, setGraphWidth }) => {
 const GraphZoomContainer = styled.div`
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
