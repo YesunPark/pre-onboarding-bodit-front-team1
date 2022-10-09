@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Graphs = ({ sensorData }) => {
   const [graphWidth, setGraphWidth] = useState(500);
+  const feedsData = sensorData.feeds;
   const filteredDatas = sensorData.feeds.filter((feedsData, i) => i % 6 === 0);
   const filteredTicks = filteredDatas.map((filteredData) =>
     String(filteredData.created_at).slice(11, 16)
@@ -14,30 +15,33 @@ const Graphs = ({ sensorData }) => {
     {
       title: "기온",
       id: "Temp",
-      data: sensorData.feeds.map((feedsData, i) => {
+      color: "red",
+      data: feedsData.map((feedData, i) => {
         return {
-          x: String(feedsData.created_at).slice(11, 16),
-          y: Number(feedsData.field1),
+          x: String(feedData.created_at).slice(11, 16),
+          y: Number(feedData.field1),
         };
       }),
     },
     {
       title: "습도",
       id: "Humidity",
-      data: sensorData.feeds.map((feedsData, i) => {
+      color: "red",
+      data: feedsData.map((feedData, i) => {
         return {
-          x: String(feedsData.created_at).slice(11, 16),
-          y: Number(feedsData.field2),
+          x: String(feedData.created_at).slice(11, 16),
+          y: Number(feedData.field2),
         };
       }),
     },
     {
       title: "기압",
       id: "Pressure",
-      data: sensorData.feeds.map((feedsData) => {
+      color: "red",
+      data: feedsData.map((feedData) => {
         return {
-          x: String(feedsData.created_at).slice(11, 16),
-          y: Number(feedsData.field3),
+          x: String(feedData.created_at).slice(11, 16),
+          y: Number(feedData.field3),
         };
       }),
     },
@@ -52,6 +56,7 @@ const Graphs = ({ sensorData }) => {
             graphWidth={graphWidth}
             graphData={[graphData]}
             filteredTicks={filteredTicks}
+            feedsData={feedsData}
             key={graphData.id}
           />
         ))}
@@ -62,6 +67,13 @@ const Graphs = ({ sensorData }) => {
 
 const GraphsContainer = styled.div`
   padding-top: 100px;
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .graphs-container {
     display: flex;
   }
