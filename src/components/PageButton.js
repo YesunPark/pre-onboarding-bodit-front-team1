@@ -1,20 +1,27 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PageButton = () => {
 	const navigate = useNavigate();
-	const params = useParams();
-
-	console.log(params);
+	const buttonData = [
+		{ id: 1, navigate: '/', text: '센서리스트' },
+		{ id: 2, navigate: '/dashboard', text: '데이터 그래프 대시보드' },
+	];
 
 	return (
 		<PageButtonContainer>
-			<button
-				className='page-button'
-				onClick={() => {
-					navigate('/dashboard');
-				}}
-			>{`=> 데이터 그래프 대시보드로 이동`}</button>
+			{buttonData.map((button) => {
+				return (
+					<button
+						key={button.id}
+						onClick={() => {
+							navigate(button.navigate);
+						}}
+					>
+						{button.text}
+					</button>
+				);
+			})}
 		</PageButtonContainer>
 	);
 };
@@ -24,9 +31,9 @@ const PageButtonContainer = styled.nav`
 	margin: auto;
 
 	button {
-		width: 133px;
-		height: 50px;
-		margin: 20px auto;
+		width: 155px;
+		height: 40px;
+		margin: 20px 5px 20px auto;
 		border: 1px solid black;
 		&:hover {
 			cursor: pointer;
