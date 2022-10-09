@@ -34,6 +34,12 @@ const SensorListContainer = styled.div`
 	.table-container {
 		width: inherit;
 		overflow: scroll;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.table-container::-webkit-scrollbar {
+		display: none;
 	}
 `;
 
