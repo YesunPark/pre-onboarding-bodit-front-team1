@@ -42,6 +42,9 @@ const PageButtonContainer = styled.nav`
 	margin: auto;
 
 	div {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
 		margin: auto;
 
 		button {

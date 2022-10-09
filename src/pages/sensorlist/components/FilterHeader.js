@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
+const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 	const [filters, setFilters] = useState({ batLvl: '-', cardNum: '-' });
 	const [filterBtnDisable, setFilterBtnDisable] = useState(true);
 
@@ -71,16 +71,18 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 					<option>1</option>
 				</select>
 			</div>
-			<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
-				적용
-			</button>
-			<button
-				onClick={() => {
-					window.location.replace('/');
-				}}
-			>
-				초기화
-			</button>
+			<div>
+				<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
+					적용
+				</button>
+				<button
+					onClick={() => {
+						window.location.replace(url);
+					}}
+				>
+					초기화
+				</button>
+			</div>
 		</FilterHeaderContainer>
 	);
 };
@@ -88,6 +90,8 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 const FilterHeaderContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
 
 	.title {
 		margin-right: 10px;
