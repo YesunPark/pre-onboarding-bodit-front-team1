@@ -11,7 +11,7 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
         setShowedSensorList(sortedList);
     };
 
-    const DecendingClick = () => {
+    const decendingClick = () => {
         let sortedList = [...showedSensorList];
         sortedList.sort(
             (a, b) => b.shadow.batLvl - a.shadow.batLvl
@@ -26,7 +26,7 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
                     <th>Sensor ID </th>
                     <th>Bat.(%) 
                         <MdOutlineKeyboardArrowUp onClick={ascendingClick} />
-                        <MdOutlineKeyboardArrowDown onClick={DecendingClick} />
+                        <MdOutlineKeyboardArrowDown onClick={decendingClick} />
                     </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
