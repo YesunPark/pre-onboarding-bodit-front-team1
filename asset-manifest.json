@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pre-onboarding-bodit-front-team1/static/css/main.746f1836.css",
-    "main.js": "/pre-onboarding-bodit-front-team1/static/js/main.72248ec9.js",
+    "main.js": "/pre-onboarding-bodit-front-team1/static/js/main.fa3b76e8.js",
     "static/js/787.56fa9836.chunk.js": "/pre-onboarding-bodit-front-team1/static/js/787.56fa9836.chunk.js",
     "index.html": "/pre-onboarding-bodit-front-team1/index.html",
     "main.746f1836.css.map": "/pre-onboarding-bodit-front-team1/static/css/main.746f1836.css.map",
-    "main.72248ec9.js.map": "/pre-onboarding-bodit-front-team1/static/js/main.72248ec9.js.map",
+    "main.fa3b76e8.js.map": "/pre-onboarding-bodit-front-team1/static/js/main.fa3b76e8.js.map",
     "787.56fa9836.chunk.js.map": "/pre-onboarding-bodit-front-team1/static/js/787.56fa9836.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.746f1836.css",
-    "static/js/main.72248ec9.js"
+    "static/js/main.fa3b76e8.js"
   ]
 }
