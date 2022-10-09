@@ -11,7 +11,7 @@ const SensorList = () => {
   const [showedSensorList, setShowedSensorList] = useState(firstSortedList);
   return (
     <SensorListContainer>
-      <SensorListTable showedSensorList={showedSensorList} />
+      <SensorListTable showedSensorList={showedSensorList} setShowedSensorList={setShowedSensorList} />
     </SensorListContainer>
   )
 }

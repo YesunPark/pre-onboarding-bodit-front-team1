@@ -1,13 +1,35 @@
 import styled from 'styled-components'
+import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-const SensorListTable = ({ showedSensorList }) => {
+const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
+
+    const ascendingClick = () => {
+        let sortedList = [...showedSensorList];
+        sortedList.sort(
+            (a, b) => a.shadow.batLvl - b.shadow.batLvl
+        );
+        setShowedSensorList(sortedList);
+    };
+
+    const DecendingClick = () => {
+        let sortedList = [...showedSensorList];
+        sortedList.push()
+        sortedList.sort(
+            (a, b) => b.shadow.batLvl - a.shadow.batLvl
+        );
+        setShowedSensorList(sortedList);
+    }
+
     return (
         <SensorTable>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Sensor ID</th>
-                    <th>Bat.(%)</th>
+                    <th>Sensor ID </th>
+                    <th>Bat.(%) 
+                        <MdOutlineKeyboardArrowUp onClick={ascendingClick} />
+                        <MdOutlineKeyboardArrowDown onClick={DecendingClick} />
+                    </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
                     <th>Card No.</th>
@@ -57,8 +79,5 @@ const SensorTable = styled.table`
         font-size: 14px;
       }
     }
-
-
-
 `
 export default SensorListTable;
