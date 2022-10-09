@@ -4,9 +4,10 @@ import Graphs from "./graphs/Graphs";
 import styled from "styled-components";
 import DatePick from "./date/DatePick";
 import ExportFile from "./export/ExportFile";
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
 const DashBoard = () => {
-  const [data, setData] = useState();
+  const [graphData, setGraphData] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const updatedStartDate = startDate.toISOString().split("T")[0];
   const endDate = new Date(startDate);
@@ -18,17 +19,17 @@ const DashBoard = () => {
       const list = await axios.get(
         `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=${updatedStartDate}&end=${updatedEndDate}`
       );
-      setData(list.data);
+      setGraphData(list.data);
     };
     getData();
   }, [startDate]);
 
   return (
-    data && (
+    graphData && (
       <DashBoardContainer>
         <DatePick setStartDate={setStartDate} startDate={startDate} />
-        <Graphs sensorData={data} />
-        <ExportFile data={data} />
+        <Graphs sensorData={graphData} />
+        <ExportFile data={graphData} />
       </DashBoardContainer>
     )
   );
