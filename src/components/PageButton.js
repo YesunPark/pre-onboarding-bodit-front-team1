@@ -10,33 +10,40 @@ const PageButton = () => {
 
 	return (
 		<PageButtonContainer>
-			{buttonData.map((button) => {
-				return (
-					<button
-						key={button.id}
-						onClick={() => {
-							navigate(button.navigate);
-						}}
-					>
-						{button.text}
-					</button>
-				);
-			})}
+			<div>
+				{buttonData.map((button) => {
+					return (
+						<button
+							key={button.id}
+							onClick={() => {
+								navigate(button.navigate);
+							}}
+						>
+							{button.text}
+						</button>
+					);
+				})}
+			</div>
 		</PageButtonContainer>
 	);
 };
 
 const PageButtonContainer = styled.nav`
+	display: flex;
 	max-width: 1061px;
 	margin: auto;
 
-	button {
-		width: 155px;
-		height: 40px;
-		margin: 20px 5px 20px auto;
-		border: 1px solid black;
-		&:hover {
-			cursor: pointer;
+	div {
+		margin: auto;
+
+		button {
+			width: 155px;
+			height: 40px;
+			margin: 20px 5px;
+			border: 1px solid black;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 `;
