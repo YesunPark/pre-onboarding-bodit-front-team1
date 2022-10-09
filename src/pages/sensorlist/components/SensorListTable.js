@@ -62,31 +62,35 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
         }
         setShowedSensorList(sortedList);
     };
-    
+
     return (
         <SensorTable>
             <thead>
                 <tr>
                     <th>Sensor ID </th>
-                    <th>Bat.(%) 
-                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortBat} />
-                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortBat} />
+                    <th className='sort-column'>Bat.(%) 
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortBat} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortBat} />
+                        </div>
+                        
                     </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
-                    <th>Card No.
-                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortCardNo} />
-                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortCardNo} />
+                    <th className='sort-column'>Card No.
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortCardNo} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortCardNo} />
+                        </div>
                     </th>
                     <th>Gateway</th>
-                    <th>Raw sent
-                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRawSent} />
-                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRawSent} />
+                    <th className='sort-column'>Raw sent
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRawSent} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRawSent} />
+                        </div>
                     </th>
-                    <th>Remain
-                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRemain} />
-                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRemain} />
-                    </th>
+                    <th>Remain</th>
                     <th>RSSI</th>
                     <th>F/W ver.</th>
                     <th>H/W ver.</th>
@@ -129,6 +133,10 @@ const SensorTable = styled.table`
         border: 1px solid #444;
         padding: 10px;
         font-size: 14px;
+      }
+      .sort-column {
+        display: flex;
+        border: none;
       }
         .low-battery {
             background-color: #ff000020;
