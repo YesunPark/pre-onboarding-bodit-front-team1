@@ -56,7 +56,7 @@ const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 		<FilterHeaderContainer>
 			<span className='title'>Filter : </span>
 			<div className='filter'>
-				<span>batLvl</span>
+				<span>Bat.(%)</span>
 				<select id='batLvl' onChange={handleFilters}>
 					<option>-</option>
 					<option>{`> 20`}</option>
@@ -64,7 +64,7 @@ const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 				</select>
 			</div>
 			<div className='filter'>
-				<span>cardNum</span>
+				<span>Card No.</span>
 				<select id='cardNum' onChange={handleFilters}>
 					<option>-</option>
 					<option>0</option>
@@ -76,6 +76,7 @@ const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 					적용
 				</button>
 				<button
+					disabled={filterBtnDisable}
 					onClick={() => {
 						window.location.replace(url);
 					}}
