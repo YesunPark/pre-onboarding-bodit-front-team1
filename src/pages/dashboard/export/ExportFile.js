@@ -21,8 +21,7 @@ const ExportFile = ({ data }) => {
 };
 
 const ExportButtonContainer = styled.div`
-  margin: 5% 2.5% 0 2.5%;
-  text-align: right;
+  margin: 5px 10px 0 0;
 
   a {
     color: white;
