@@ -11,7 +11,7 @@ const Router = () => {
 			<GlobalStyles />
 			<PageButton url={BASE_URL} />
 			<Routes>
-				<Route path={`${BASE_URL}`} element={<SensorList />} />
+				<Route path={`${BASE_URL}`} element={<SensorList url={BASE_URL} />} />
 				<Route path={`${BASE_URL}/dashboard`} element={<DashBoard />} />
 			</Routes>
 		</BrowserRouter>

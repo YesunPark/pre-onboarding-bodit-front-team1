@@ -4,7 +4,7 @@ import { SENSOR_LIST_DATA } from './data/sensorListData';
 import FilterHeader from './components/FilterHeader';
 import SensorListTable from './components/SensorListTable';
 
-const SensorList = () => {
+const SensorList = ({ url }) => {
 	const firstSortedList = SENSOR_LIST_DATA.sort(
 		(a, b) => a.thingName.slice(-6) - b.thingName.slice(-6)
 	);
@@ -13,20 +13,28 @@ const SensorList = () => {
 	return (
 		<SensorListContainer>
 			<FilterHeader
+				url={url}
 				firstSortedList={firstSortedList}
 				setShowedSensorList={setShowedSensorList}
 			/>
 			<div>배터리가 20%이하이면 붉게 표시됩니다.</div>
-			<SensorListTable
-				showedSensorList={showedSensorList}
-				setShowedSensorList={setShowedSensorList}
-			/>
+			<div className='table-container'>
+				<SensorListTable
+					showedSensorList={showedSensorList}
+					setShowedSensorList={setShowedSensorList}
+				/>
+			</div>
 		</SensorListContainer>
 	);
 };
 const SensorListContainer = styled.div`
 	max-width: 1061px;
 	margin: auto;
+
+	.table-container {
+		width: inherit;
+		overflow: scroll;
+	}
 `;
 
 export default SensorList;
