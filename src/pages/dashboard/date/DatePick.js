@@ -23,6 +23,7 @@ const DatePickContainer = styled.div`
     position: relative;
     width: auto;
     input {
+      width: 150px;
       padding: 7px 10px;
       border: none;
       border-radius: 5px;
@@ -33,7 +34,7 @@ const DatePickContainer = styled.div`
       content: "";
       display: block;
       position: absolute;
-      right: 90px;
+      right: 10px;
       top: 50%;
       width: 20px;
       height: 20px;
