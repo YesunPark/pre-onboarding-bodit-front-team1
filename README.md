@@ -21,7 +21,8 @@
 >  [**과제 진행 후기**]
 > -  박예선
 
-
+> -  김진영
+[블로그 게시글](https://velog.io/@jinyoung985/Pre-Onboarding-%EA%B0%90%EC%A7%80-%EC%84%BC%EC%84%9C-%EA%B4%80%EB%A6%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0)에 정리해두었습니다.
 
 
 <br/>
@@ -96,8 +97,8 @@ https://github.com/YesunPark/pre-onboarding-bodit-front-team1/blob/a8abbdf879294
 
        
 ### [김진영] - 데이터 그래프 대시보드 화면
-- 구현한 기능 : 
-- 설명 : 
+- 구현한 기능 : 그래프, 그래프 x축 확대 및 축소, Drag & Drop 순서 변경
+- 설명 : [블로그 게시글](https://velog.io/@jinyoung985/Pre-Onboarding-%EA%B0%90%EC%A7%80-%EC%84%BC%EC%84%9C-%EA%B4%80%EB%A6%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0)에 정리해두었습니다.
 
 
 ### [이혜림] - 데이터 그래프 대시보드 화면
