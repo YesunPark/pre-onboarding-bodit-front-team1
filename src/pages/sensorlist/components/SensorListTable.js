@@ -3,37 +3,90 @@ import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icon
 
 const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
 
-    const ascendingClick = () => {
+    const handleSortBat = (e) => { 
         let sortedList = [...showedSensorList];
-        sortedList.sort(
-            (a, b) => a.shadow.batLvl - b.shadow.batLvl
-        );
+        if ( e.target.id === 'up' ) {
+            sortedList.sort(
+                (a, b) => a.shadow.batLvl - b.shadow.batLvl
+            );
+        }
+        else if (e.target.id === 'down') {
+             sortedList.sort(
+                (a, b) => b.shadow.batLvl - a.shadow.batLvl
+            );
+        }
         setShowedSensorList(sortedList);
     };
 
-    const decendingClick = () => {
+    const handleSortCardNo = (e) => {
         let sortedList = [...showedSensorList];
-        sortedList.sort(
-            (a, b) => b.shadow.batLvl - a.shadow.batLvl
-        );
+        if (e.target.id === 'up') {
+            sortedList.sort(
+                (a, b) => a.shadow.connCardNum - b.shadow.connCardNum
+            );
+        }
+        else if (e.target.id === 'down') {
+            sortedList.sort(
+                (a, b) => b.shadow.connCardNum - a.shadow.connCardNum
+            );
+        }
         setShowedSensorList(sortedList);
-    }
+    };
 
+    const handleSortRawSent = (e) => {
+        let sortedList = [...showedSensorList];
+        if (e.target.id === 'up') {
+            sortedList.sort(
+                (a, b) => a.shadow.rawSentCnt - b.shadow.rawSentCnt
+            );
+        }
+        else if (e.target.id === 'down') {
+            sortedList.sort(
+                (a, b) => b.shadow.rawSentCnt - a.shadow.rawSentCnt
+            );
+        }
+        setShowedSensorList(sortedList);
+    };
+
+    const handleSortRemain = (e) => {
+        let sortedList = [...showedSensorList];
+        if (e.target.id === 'up') {
+            sortedList.sort(
+                (a, b) => a.shadow.remainData - b.shadow.remainData
+            );
+        }
+        else if (e.target.id === 'down') {
+            sortedList.sort(
+                (a, b) => b.shadow.remainData - a.shadow.remainData
+            );
+        }
+        setShowedSensorList(sortedList);
+    };
+    
     return (
         <SensorTable>
             <thead>
                 <tr>
                     <th>Sensor ID </th>
                     <th>Bat.(%) 
-                        <MdOutlineKeyboardArrowUp onClick={ascendingClick} />
-                        <MdOutlineKeyboardArrowDown onClick={decendingClick} />
+                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortBat} />
+                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortBat} />
                     </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
-                    <th>Card No.</th>
+                    <th>Card No.
+                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortCardNo} />
+                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortCardNo} />
+                    </th>
                     <th>Gateway</th>
-                    <th>Raw sent</th>
-                    <th>Remain</th>
+                    <th>Raw sent
+                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRawSent} />
+                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRawSent} />
+                    </th>
+                    <th>Remain
+                        <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRemain} />
+                        <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRemain} />
+                    </th>
                     <th>RSSI</th>
                     <th>F/W ver.</th>
                     <th>H/W ver.</th>
