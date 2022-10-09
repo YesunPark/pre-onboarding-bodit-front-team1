@@ -1,13 +1,33 @@
 import styled from 'styled-components'
+import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-const SensorListTable = ({ showedSensorList }) => {
+const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
+
+    const ascendingClick = () => {
+        let sortedList = [...showedSensorList];
+        sortedList.sort(
+            (a, b) => a.shadow.batLvl - b.shadow.batLvl
+        );
+        setShowedSensorList(sortedList);
+    };
+
+    const decendingClick = () => {
+        let sortedList = [...showedSensorList];
+        sortedList.sort(
+            (a, b) => b.shadow.batLvl - a.shadow.batLvl
+        );
+        setShowedSensorList(sortedList);
+    }
+
     return (
         <SensorTable>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Sensor ID</th>
-                    <th>Bat.(%)</th>
+                    <th>Sensor ID </th>
+                    <th>Bat.(%) 
+                        <MdOutlineKeyboardArrowUp onClick={ascendingClick} />
+                        <MdOutlineKeyboardArrowDown onClick={decendingClick} />
+                    </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
                     <th>Card No.</th>
@@ -23,9 +43,10 @@ const SensorListTable = ({ showedSensorList }) => {
                 {showedSensorList.map((sensor, idx) => {
                     return (
                         <tr key={sensor.thingName}>
-                            <td>{idx}</td>
                             <td>{sensor.thingName}</td>
-                            <td>{sensor.shadow.batLvl}</td>
+                            <td className={sensor.shadow.batLvl <= 20 ? 'low-battery' : ''}>
+                                {sensor.shadow.batLvl}
+                            </td>
                             <td>{sensor.shadow.connAt}</td>
                             <td>{sensor.shadow.disconnAt}</td>
                             <td>{sensor.shadow.connCardNum}</td>
@@ -56,9 +77,12 @@ const SensorTable = styled.table`
         padding: 10px;
         font-size: 14px;
       }
+        .low-battery {
+            background-color: #ff000020;
+            color: red;
+            font-weight: 800;
+        }
     }
-
-
-
+  
 `
 export default SensorListTable;

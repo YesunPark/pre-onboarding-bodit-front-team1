@@ -54,15 +54,14 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 
 	return (
 		<FilterHeaderContainer>
-			<div className='filter-container'>
-				<div className='filter'>
-					<span>batLvl</span>
-					<select id='batLvl' onClick={handleFilters}>
-						<option>-</option>
-						<option>{`> 20`}</option>
-						<option>{`<= 20`}</option>
-					</select>
-				</div>
+			<span className='title'>Filter : </span>
+			<div className='filter'>
+				<span>batLvl</span>
+				<select id='batLvl' onClick={handleFilters}>
+					<option>-</option>
+					<option>{`> 20`}</option>
+					<option>{`<= 20`}</option>
+				</select>
 			</div>
 			<div className='filter'>
 				<span>cardNum</span>
@@ -72,18 +71,16 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 					<option>1</option>
 				</select>
 			</div>
-			<div className='button-container'>
-				<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
-					적용
-				</button>
-				<button
-					onClick={() => {
-						window.location.replace('/');
-					}}
-				>
-					초기화
-				</button>
-			</div>
+			<button disabled={filterBtnDisable} onClick={handleFilterBtn}>
+				적용
+			</button>
+			<button
+				onClick={() => {
+					window.location.replace('/');
+				}}
+			>
+				초기화
+			</button>
 		</FilterHeaderContainer>
 	);
 };
@@ -91,7 +88,13 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 const FilterHeaderContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	margin-top: 30px;
+
+	.title {
+		margin-right: 10px;
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 28px;
+	}
 
 	.filter {
 		margin-right: 10px;
@@ -107,16 +110,20 @@ const FilterHeaderContainer = styled.div`
 			&:focus {
 				outline: none;
 			}
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 
-	.button-container {
-		button {
-			height: 28px;
-			margin-right: 10px;
-			padding: 0px 10px;
-			border: 1px solid black;
-			font-size: 15px;
+	button {
+		height: 28px;
+		margin-right: 10px;
+		padding: 0px 10px;
+		border: 1px solid black;
+		font-size: 15px;
+		&:hover {
+			cursor: pointer;
 		}
 	}
 `;
