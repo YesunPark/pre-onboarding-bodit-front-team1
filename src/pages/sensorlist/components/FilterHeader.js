@@ -9,7 +9,6 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 		filters.cardNum === '-' && filters.batLvl === '-'
 			? setFilterBtnDisable(true)
 			: setFilterBtnDisable(false);
-		console.log(filters);
 	}, [filters]);
 
 	const handleFilterBtn = () => {
