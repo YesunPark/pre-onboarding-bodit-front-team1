@@ -3,36 +3,78 @@ import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icon
 
 const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
 
-    const ascendingClick = () => {
+    const handleSortBat = (e) => { 
         let sortedList = [...showedSensorList];
-        sortedList.sort(
-            (a, b) => a.shadow.batLvl - b.shadow.batLvl
-        );
+        if ( e.target.id === 'up' ) {
+            sortedList.sort(
+                (a, b) => a.shadow.batLvl - b.shadow.batLvl
+            );
+        }
+        else if (e.target.id === 'down') {
+             sortedList.sort(
+                (a, b) => b.shadow.batLvl - a.shadow.batLvl
+            );
+        }
         setShowedSensorList(sortedList);
     };
 
-    const decendingClick = () => {
+    const handleSortCardNo = (e) => {
         let sortedList = [...showedSensorList];
-        sortedList.sort(
-            (a, b) => b.shadow.batLvl - a.shadow.batLvl
-        );
+        if (e.target.id === 'up') {
+            sortedList.sort(
+                (a, b) => a.shadow.connCardNum - b.shadow.connCardNum
+            );
+        }
+        else if (e.target.id === 'down') {
+            sortedList.sort(
+                (a, b) => b.shadow.connCardNum - a.shadow.connCardNum
+            );
+        }
         setShowedSensorList(sortedList);
-    }
+    };
+
+    const handleSortRawSent = (e) => {
+        let sortedList = [...showedSensorList];
+        if (e.target.id === 'up') {
+            sortedList.sort(
+                (a, b) => a.shadow.rawSentCnt - b.shadow.rawSentCnt
+            );
+        }
+        else if (e.target.id === 'down') {
+            sortedList.sort(
+                (a, b) => b.shadow.rawSentCnt - a.shadow.rawSentCnt
+            );
+        }
+        setShowedSensorList(sortedList);
+    };
 
     return (
         <SensorTable>
             <thead>
                 <tr>
                     <th>Sensor ID </th>
-                    <th>Bat.(%) 
-                        <MdOutlineKeyboardArrowUp onClick={ascendingClick} />
-                        <MdOutlineKeyboardArrowDown onClick={decendingClick} />
+                    <th className='sort-column'>Bat.(%) 
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortBat} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortBat} />
+                        </div>
+                        
                     </th>
                     <th>Connected at</th>
                     <th>Disconnected at</th>
-                    <th>Card No.</th>
+                    <th className='sort-column'>Card No.
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortCardNo} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortCardNo} />
+                        </div>
+                    </th>
                     <th>Gateway</th>
-                    <th>Raw sent</th>
+                    <th className='sort-column'>Raw sent
+                        <div>
+                            <MdOutlineKeyboardArrowUp id='up' onClick={handleSortRawSent} />
+                            <MdOutlineKeyboardArrowDown id='down' onClick={handleSortRawSent} />
+                        </div>
+                    </th>
                     <th>Remain</th>
                     <th>RSSI</th>
                     <th>F/W ver.</th>
@@ -40,7 +82,7 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
                 </tr>
             </thead>
             <tbody>
-                {showedSensorList.map((sensor, idx) => {
+                {showedSensorList.map((sensor) => {
                     return (
                         <tr key={sensor.thingName}>
                             <td>{sensor.thingName}</td>
@@ -76,6 +118,10 @@ const SensorTable = styled.table`
         border: 1px solid #444;
         padding: 10px;
         font-size: 14px;
+      }
+      .sort-column {
+        display: flex;
+        border: none;
       }
         .low-battery {
             background-color: #ff000020;
