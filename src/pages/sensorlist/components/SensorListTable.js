@@ -48,21 +48,6 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
         setShowedSensorList(sortedList);
     };
 
-    const handleSortRemain = (e) => {
-        let sortedList = [...showedSensorList];
-        if (e.target.id === 'up') {
-            sortedList.sort(
-                (a, b) => a.shadow.remainData - b.shadow.remainData
-            );
-        }
-        else if (e.target.id === 'down') {
-            sortedList.sort(
-                (a, b) => b.shadow.remainData - a.shadow.remainData
-            );
-        }
-        setShowedSensorList(sortedList);
-    };
-
     return (
         <SensorTable>
             <thead>
@@ -97,7 +82,7 @@ const SensorListTable = ({ showedSensorList, setShowedSensorList }) => {
                 </tr>
             </thead>
             <tbody>
-                {showedSensorList.map((sensor, idx) => {
+                {showedSensorList.map((sensor) => {
                     return (
                         <tr key={sensor.thingName}>
                             <td>{sensor.thingName}</td>
