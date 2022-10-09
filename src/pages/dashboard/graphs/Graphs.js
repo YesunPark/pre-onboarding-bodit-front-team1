@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GraphZoom from "./GraphZoom";
 import GraphBox from "./GraphBox";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -48,14 +48,17 @@ const Graphs = ({ sensorData }) => {
     },
   ];
 
-  const [graphs, updateGraphs] = useState(graphsData);
+  const [copiedGraphsData, setCopiedGraphsData] = useState(graphsData);
+
+  useEffect(() => {
+    setCopiedGraphsData([...graphsData]);
+  }, [sensorData]);
 
   const onDragEnd = (result) => {
-    const items = Array.from(graphs);
+    const items = Array.from(copiedGraphsData);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
-    updateGraphs(items);
+    setCopiedGraphsData(items);
   };
 
   return (
@@ -69,7 +72,7 @@ const Graphs = ({ sensorData }) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {graphs.map((graphData, index) => (
+              {copiedGraphsData.map((graphData, index) => (
                 <Draggable
                   key={graphData.title}
                   draggableId={graphData.id}
@@ -92,7 +95,7 @@ const Graphs = ({ sensorData }) => {
                   )}
                 </Draggable>
               ))}
-              {/* {provided.placeholder} */}
+              {provided.placeholder}
             </ul>
           )}
         </Droppable>
@@ -114,6 +117,7 @@ const GraphsContainer = styled.div`
     left: 25vw;
     display: flex;
     flex-direction: column;
+    padding-bottom: 20px;
   }
 `;
 
