@@ -56,7 +56,7 @@
 <br/>
 
 ## 적용 기술 
-+ React.js,  React-Router-Dom, styled component,
++ React.js,  React-Router-Dom, styled component, react-datepicker 
 
 
 <br/>
