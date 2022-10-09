@@ -6,29 +6,21 @@ import DatePick from "./date/DatePick";
 
 const DashBoard = () => {
   const [data, setData] = useState();
-
   const [startDate, setStartDate] = useState(new Date());
-
-  useEffect(() => {
-    const newDate =
-      startDate.getFullYear() +
-      "-" +
-      (startDate.getMonth() + 1) +
-      "-" +
-      startDate.getDate();
-  }, [startDate]);
+  const updatedStartDate = startDate.toISOString().split("T")[0];
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 1);
+  const updatedEndDate = endDate.toISOString().split("T")[0];
 
   useEffect(() => {
     const getData = async () => {
       const list = await axios.get(
-        "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9"
+        `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=${updatedStartDate}&end=${updatedEndDate}`
       );
       setData(list.data);
     };
     getData();
-  }, []);
-
-  console.log(data);
+  }, [startDate]);
 
   return (
     data && (
