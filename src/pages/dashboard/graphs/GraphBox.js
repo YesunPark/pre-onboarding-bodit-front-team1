@@ -14,9 +14,9 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks, feedsData }) => {
           ) : (
             <ResponsiveLine
               width={graphWidth}
-              height={300}
+              height={180}
               data={graphData}
-              margin={{ top: 50, right: 20, bottom: 50, left: 60 }}
+              margin={{ top: 10, right: 20, bottom: 30, left: 60 }}
               lineWidth={1}
               colors={graphData[0].color}
               xScale={{ type: "point" }}
@@ -33,19 +33,14 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks, feedsData }) => {
                 tickSize: 0,
                 tickPadding: 0,
                 tickRotation: 0,
-                legend: "AT-C",
-                legendPosition: "middle",
-                legendOffset: -25,
                 tickValues: [],
               }}
               axisRight={null}
               axisBottom={{
                 orient: "bottom",
                 tickSize: 0,
-                tickPadding: 4,
-                tickRotation: 70,
-                legend: "Date",
-                legendOffset: 40,
+                tickPadding: 6,
+                tickRotation: 20,
                 legendPosition: "middle",
                 tickValues: filteredTicks,
               }}
@@ -53,9 +48,9 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks, feedsData }) => {
                 orient: "left",
                 tickSize: 6,
                 tickPadding: 9,
-                tickRotation: -33,
+                tickRotation: 0,
                 legend: graphData[0].id,
-                legendOffset: -50,
+                legendOffset: -52,
                 legendPosition: "middle",
               }}
               enableGridX={false}
@@ -64,8 +59,22 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks, feedsData }) => {
               pointBorderWidth={2}
               pointBorderColor="#ff0000"
               pointLabelYOffset={-10}
-              useMesh={true}
               legends={[]}
+              theme={{
+                background: "white",
+                axis: {
+                  ticks: {
+                    text: {
+                      fontSize: "10px",
+                    },
+                  },
+                  legend: {
+                    text: {
+                      fill: "#aaaaaa",
+                    },
+                  },
+                },
+              }}
               animate={false}
             />
           )}
@@ -78,16 +87,16 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks, feedsData }) => {
 const GraphBoxContainer = styled.div`
   .graph-wrapper {
     flex-direction: column;
+    margin-bottom: 10px;
 
     .title {
-      margin-bottom: 30px;
-      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
       font-weight: 700;
     }
     .graph-container {
-      width: 30vw;
-      height: 330px;
-      margin: 0 calc(10vw / 6);
+      width: 50vw;
+      height: 190px;
       border: 1px solid black;
       overflow-x: scroll;
       overflow-y: hidden;

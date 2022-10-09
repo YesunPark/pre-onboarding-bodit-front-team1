@@ -1,10 +1,11 @@
 import { useState } from "react";
 import GraphZoom from "./GraphZoom";
 import GraphBox from "./GraphBox";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
 const Graphs = ({ sensorData }) => {
-  const [graphWidth, setGraphWidth] = useState(500);
+  const [graphWidth, setGraphWidth] = useState(750);
   const feedsData = sensorData.feeds;
   const filteredDatas = sensorData.feeds.filter((feedsData, i) => i % 6 === 0);
   const filteredTicks = filteredDatas.map((filteredData) =>
@@ -47,27 +48,60 @@ const Graphs = ({ sensorData }) => {
     },
   ];
 
+  const [graphs, updateGraphs] = useState(graphsData);
+
+  const onDragEnd = (result) => {
+    const items = Array.from(graphs);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateGraphs(items);
+  };
+
   return (
     <GraphsContainer>
-      <div className="graphs-container">
-        <GraphZoom graphWidth={graphWidth} setGraphWidth={setGraphWidth} />
-        {graphsData.map((graphData) => (
-          <GraphBox
-            graphWidth={graphWidth}
-            graphData={[graphData]}
-            filteredTicks={filteredTicks}
-            feedsData={feedsData}
-            key={graphData.id}
-          />
-        ))}
-      </div>
+      <GraphZoom graphWidth={graphWidth} setGraphWidth={setGraphWidth} />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="graphs">
+          {(provided) => (
+            <ul
+              className="graphs-container"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {graphs.map((graphData, index) => (
+                <Draggable
+                  key={graphData.title}
+                  draggableId={graphData.id}
+                  index={index}
+                >
+                  {(provided) => (
+                    <li
+                      className="graph-box-list"
+                      ref={provided.innerRef}
+                      {...provided.dragHandleProps}
+                      {...provided.draggableProps}
+                    >
+                      <GraphBox
+                        graphWidth={graphWidth}
+                        graphData={[graphData]}
+                        filteredTicks={filteredTicks}
+                        feedsData={feedsData}
+                      />
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {/* {provided.placeholder} */}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     </GraphsContainer>
   );
 };
 
 const GraphsContainer = styled.div`
-  padding-top: 100px;
-
   .flex-center {
     display: flex;
     align-items: center;
@@ -75,7 +109,11 @@ const GraphsContainer = styled.div`
   }
 
   .graphs-container {
+    position: absolute;
+    top: 10px;
+    left: 25vw;
     display: flex;
+    flex-direction: column;
   }
 `;
 

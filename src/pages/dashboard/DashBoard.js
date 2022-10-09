@@ -21,14 +21,12 @@ const DashBoard = () => {
   useEffect(() => {
     const getData = async () => {
       const list = await axios.get(
-        "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9"
+        "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=2022-10-01&end=2022-10-02"
       );
       setData(list.data);
     };
     getData();
   }, []);
-
-  console.log(data);
 
   return (
     data && (
