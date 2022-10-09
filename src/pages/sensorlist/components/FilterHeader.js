@@ -54,15 +54,14 @@ const FilterHeader = ({ firstSortedList, setShowedSensorList }) => {
 
 	return (
 		<FilterHeaderContainer>
-			<div className='filter-container'>
-				<div className='filter'>
-					<span>batLvl</span>
-					<select id='batLvl' onClick={handleFilters}>
-						<option>-</option>
-						<option>{`> 20`}</option>
-						<option>{`<= 20`}</option>
-					</select>
-				</div>
+			<span className='title'>Filter : </span>
+			<div className='filter'>
+				<span>batLvl</span>
+				<select id='batLvl' onClick={handleFilters}>
+					<option>-</option>
+					<option>{`> 20`}</option>
+					<option>{`<= 20`}</option>
+				</select>
 			</div>
 			<div className='filter'>
 				<span>cardNum</span>
@@ -92,6 +91,13 @@ const FilterHeaderContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 30px;
+
+	.title {
+		margin-right: 10px;
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 28px;
+	}
 
 	.filter {
 		margin-right: 10px;
