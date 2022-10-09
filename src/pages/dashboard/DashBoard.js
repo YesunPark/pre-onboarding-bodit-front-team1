@@ -10,15 +10,6 @@ const DashBoard = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
-    const newDate =
-      startDate.getFullYear() +
-      "-" +
-      (startDate.getMonth() + 1) +
-      "-" +
-      startDate.getDate();
-  }, [startDate]);
-
-  useEffect(() => {
     const getData = async () => {
       const list = await axios.get(
         "https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9"
@@ -27,8 +18,6 @@ const DashBoard = () => {
     };
     getData();
   }, []);
-
-  console.log(data);
 
   return (
     data && (
