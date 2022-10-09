@@ -57,7 +57,7 @@ const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 			<span className='title'>Filter : </span>
 			<div className='filter'>
 				<span>batLvl</span>
-				<select id='batLvl' onClick={handleFilters}>
+				<select id='batLvl' onChange={handleFilters}>
 					<option>-</option>
 					<option>{`> 20`}</option>
 					<option>{`<= 20`}</option>
@@ -65,7 +65,7 @@ const FilterHeader = ({ url, firstSortedList, setShowedSensorList }) => {
 			</div>
 			<div className='filter'>
 				<span>cardNum</span>
-				<select id='cardNum' onClick={handleFilters}>
+				<select id='cardNum' onChange={handleFilters}>
 					<option>-</option>
 					<option>0</option>
 					<option>1</option>
