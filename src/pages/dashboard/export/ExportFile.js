@@ -10,11 +10,11 @@ const ExportFile = ({ data }) => {
   ];
 
   return (
-    <ExportButtonContainer>
+    data.feeds?.length && (<ExportButtonContainer>
       <CSVLink data={data.feeds} filename="data" headers={headers}>
         Export
       </CSVLink>
-    </ExportButtonContainer>
+    </ExportButtonContainer>)
   );
 };
 
