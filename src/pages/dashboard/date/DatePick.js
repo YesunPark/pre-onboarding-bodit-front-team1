@@ -12,6 +12,7 @@ const DatePick = ({ startDate, setStartDate }) => {
           onChange={(date) => setStartDate(date)}
           dateFormat="yyyy/MM/dd"
           withPortal
+          maxDate={new Date()}
         />
       </DatePickContainer>
     </>
