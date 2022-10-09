@@ -17,7 +17,7 @@ const Graphs = ({ sensorData }) => {
       data: sensorData.feeds.map((feedsData, i) => {
         return {
           x: String(feedsData.created_at).slice(11, 16),
-          y: Number(feedsData.field2),
+          y: Number(feedsData.field1),
         };
       }),
     },
@@ -37,7 +37,7 @@ const Graphs = ({ sensorData }) => {
       data: sensorData.feeds.map((feedsData) => {
         return {
           x: String(feedsData.created_at).slice(11, 16),
-          y: feedsData.field3,
+          y: Number(feedsData.field3),
         };
       }),
     },
@@ -52,6 +52,7 @@ const Graphs = ({ sensorData }) => {
             graphWidth={graphWidth}
             graphData={[graphData]}
             filteredTicks={filteredTicks}
+            key={graphData.id}
           />
         ))}
       </div>

@@ -9,7 +9,7 @@ const GraphBox = ({ graphWidth, graphData, filteredTicks }) => {
         <div className="graph-container">
           <ResponsiveLine
             width={graphWidth}
-            height="300"
+            height={300}
             data={graphData}
             margin={{ top: 50, right: 20, bottom: 50, left: 60 }}
             xScale={{ type: "point" }}

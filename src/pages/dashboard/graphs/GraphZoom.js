@@ -11,12 +11,12 @@ const GraphZoom = ({ graphWidth, setGraphWidth }) => {
   };
   return (
     <GraphZoomContainer>
-      <div className="zoom-wrapper" onClick={zoomIn}>
+      <button className="zoom-button" onClick={zoomIn}>
         그래프 확대 <AiFillPlusCircle className="icon" />
-      </div>
-      <div className="zoom-wrapper" onClick={zoomOut}>
+      </button>
+      <button className="zoom-button" onClick={zoomOut}>
         그래프 축소 <AiFillMinusCircle className="icon" />
-      </div>
+      </button>
     </GraphZoomContainer>
   );
 };
@@ -26,11 +26,16 @@ const GraphZoomContainer = styled.div`
   right: calc(10vw / 6);
   top: calc(10vw / 6);
 
-  .zoom-wrapper {
+  .zoom-button {
     display: flex;
+    align-items: center;
     justify-content: center;
+    border: none;
     margin-bottom: 10px;
+    background-color: transparent;
     font-size: 20px;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic",
+      sans-serif;
     cursor: pointer;
 
     .icon {
