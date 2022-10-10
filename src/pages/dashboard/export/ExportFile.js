@@ -10,7 +10,7 @@ const ExportFile = ({ data }) => {
   ];
 
   return (
-    data.feeds?.length && (
+    data.feeds?.length !== 0 && (
       <ExportButtonContainer>
         <CSVLink data={data.feeds} filename="data" headers={headers}>
           Export
