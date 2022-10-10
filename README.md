@@ -21,7 +21,7 @@
 >  [**과제 진행 후기**]
 > -  박예선 : [블로그](https://velog.io/@lynn080/%EA%B0%90%EC%A7%80-%EC%84%BC%EC%84%9C-%EA%B4%80%EB%A6%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0-Pre-OnBoarding)
 >
-> -  김진영
+> -  김진영 : 
 [블로그 게시글](https://velog.io/@jinyoung985/Pre-Onboarding-%EA%B0%90%EC%A7%80-%EC%84%BC%EC%84%9C-%EA%B4%80%EB%A6%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0)에 정리해두었습니다.
 
 
@@ -38,7 +38,7 @@
 
 ## 적용 기술 
 + React.js,  React-Router-Dom, styled component
-+ gh-pages, react-beautiful-dnd,  react-datepicker 
++ gh-pages, react-beautiful-dnd, nivo, react-datepicker 
 
 
 <br/>
