@@ -38,7 +38,7 @@
 
 ## 적용 기술 
 + React.js,  React-Router-Dom, styled component
-+ gh-pages, react-beautiful-dnd, nivo, react-datepicker 
++ gh-pages, react-beautiful-dnd, nivo, react-datepicker, react-csv
 
 
 <br/>
@@ -98,8 +98,20 @@ https://github.com/YesunPark/pre-onboarding-bodit-front-team1/blob/a8abbdf879294
 - 버튼에 id를 부여하여 id가 ‘up’인 경우 오름차순, id가 ‘down’인 경우 내림차순으로 구분하고 sort 메서드로 오름차순 내림차순 정렬 기능을 구현하였습니다.
 
 ### [이기완] - 데이터 그래프 대시보드 화면
-- 구현한 기능 :
+- 구현한 기능 : 데이터 api fetch, 데이터 export
 - 설명 : 
+ 1. 데이터 api fetch 
+ - 유저가 달력 클릭시 해당되는 날짜 state값에 저장. 
+ - 해당되는 날짜를 이용하여 그 다음날짜 계산.
+ - 날짜 형식을 api 호출에 필요한 형식으로 변환.
+ - 변환된 날짜를 start와 end 부분에 쿼리형식으로 넣어서 기존 api url의 뒷부분에 추가하여 해당되는 날짜의 24시간 데이터를 요청.
+ - 의존성 배열에 startDate를 추가함으로써 유저가 다른 날짜를 클릭하게될시 리렌더링을 통해 새로운 날짜의 데이터를 요청할 수 있게 구현하였습니다.
+ https://github.com/YesunPark/pre-onboarding-bodit-front-team1/blob/d25da9676bcddc9a6564a0dde9cb3116bd7ccb3f/src/pages/dashboard/DashBoard.js#L10-L25
+ 
+ 2. 데이터 export
+ - 추가로, 해당되는 날짜의 24시간 데이터를 csv 파일형식으로 export 할수 있게 react-csv 라이브러를 통하여 구현하였습니다. 
+ - 헤더부분은 유저가 알기쉽게 각 데이터가 무엇을뜻하는지 자세하게 명시하였고. export 버튼은 조건부렌더링을 통하여 해당되는 날짜의 데이터가 있을경우에만 출력되게 설정하였습니다.
+ https://github.com/YesunPark/pre-onboarding-bodit-front-team1/blob/d25da9676bcddc9a6564a0dde9cb3116bd7ccb3f/src/pages/dashboard/export/ExportFile.js#L4-L21
 
 
        
